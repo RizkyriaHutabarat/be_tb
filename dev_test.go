@@ -83,7 +83,7 @@ func TestUpdateCatatan(t *testing.T) {
 
     // Define updated fields
     judul_tugas := "Tugas Pemrograman 4"
-    matkul := "Pemrograman"
+    matkul := "Pemrograman 4"
     deskripsi_tugas := "Tugas baru dengan flutter UI"
     tanggal_deadline := "Minggu 13 Januari 2024 Jam 15.00"
     tanggal_submit := "Minggu 13 Januari 2024"
