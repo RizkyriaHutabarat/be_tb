@@ -3,12 +3,15 @@ module github.com/RizkyriaHutabarat/be_tb
 go 1.20
 
 require (
+	aidanwoods.dev/go-paseto v1.5.1
 	github.com/aiteung/atdb v0.1.5
+	github.com/badoux/checkmail v1.2.1
 	go.mongodb.org/mongo-driver v1.13.1
-	golang.org/x/crypto v0.9.0
+	golang.org/x/crypto v0.11.0
 )
 
 require (
+	aidanwoods.dev/go-result v0.1.0 // indirect
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
 	github.com/golang-sql/civil v0.0.0-20220223132316-b832511892a9 // indirect
 	github.com/golang-sql/sqlexp v0.1.0 // indirect
@@ -21,5 +24,6 @@ require (
 	github.com/xdg-go/stringprep v1.0.4 // indirect
 	github.com/youmark/pkcs8 v0.0.0-20201027041543-1326539a0a0a // indirect
 	golang.org/x/sync v0.2.0 // indirect
-	golang.org/x/text v0.9.0 // indirect
+	golang.org/x/sys v0.10.0 // indirect
+	golang.org/x/text v0.11.0 // indirect
 )
