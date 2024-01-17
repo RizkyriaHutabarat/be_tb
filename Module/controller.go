@@ -13,11 +13,11 @@ import (
 	"strings"
 
 	model "github.com/RizkyriaHutabarat/be_tb/Model"
-	"github.com/aiteung/atdb"
 	"github.com/badoux/checkmail"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 	"golang.org/x/crypto/argon2"
 )
 
@@ -31,14 +31,13 @@ import (
 // var MongoConn = atdb.MongoConnect(MongoInfo)
 
 // mongodb
-func MongoConnect(MONGOCONNSTRINGENV, dbname string) *mongo.Database {
-	var DBmongoinfo = atdb.DBInfo{
-		DBString: os.Getenv(MONGOCONNSTRINGENV),
-		DBName:   dbname,
+func MongoConnect(MongoString, dbname string) *mongo.Database {
+	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(os.Getenv(MongoString)))
+	if err != nil {
+		fmt.Printf("MongoConnect: %v\n", err)
 	}
-	return atdb.MongoConnect(DBmongoinfo)
+	return client.Database(dbname)
 }
-
 
 //crud
 
