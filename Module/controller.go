@@ -396,7 +396,7 @@ func SignUp(db *mongo.Database, col string, insertedDoc model.User) (string, err
 	hashedPassword := argon2.IDKey([]byte(insertedDoc.Password), salt, 1, 64*1024, 4, 32)
 	user := bson.M{
 		"fullname": insertedDoc.FullName,
-		"username": insertedDoc.Email,
+		"email": insertedDoc.Email,
 		"password": hex.EncodeToString(hashedPassword),
 		"phonenumber": insertedDoc.PhoneNumber,
 		"salt": hex.EncodeToString(salt),
