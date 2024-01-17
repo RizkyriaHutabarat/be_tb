@@ -23,10 +23,10 @@ func TestGenerateKey(t *testing.T) {
 func TestSignUp(t *testing.T) {
 	conn := db
 	var user model.User
-	user.FullName = "kia"
-	user.Email = "kia@gmail.com"
-	user.Password = "kia181103"
-	user.PhoneNumber = "621219882869"
+	user.FullName = "lina"
+	user.Email = "lina@gmail.com"
+	user.Password = "lina1234"
+	user.PhoneNumber = "627483918273"
 	email, err := module.SignUp(conn, collectionnameUser, user)
 	if err != nil {
 		fmt.Println(err)
@@ -38,8 +38,8 @@ func TestSignUp(t *testing.T) {
 func TestLogInn(t *testing.T) {
 	conn := db
 	var user model.User
-	user.Email = "admin@gmail.com"
-	user.Password = "admin12345678"
+	user.Email = "kia@gmail.com"
+	user.Password = "kia181103"
 	user, _ = module.LogIn(conn, collectionnameUser, user)
 	tokenstring, err := module.Encode(user.ID, user.Email, "33186fcfc13ba9946bf200cf6c7808e6ebfc605140f65809e06648985b08ebda2df976efd75eacf2a37b1ce184deec8d3b72cb78f7881ed5e7a02d97351c2aef")
 	if err != nil {
