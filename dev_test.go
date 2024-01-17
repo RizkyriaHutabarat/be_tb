@@ -41,7 +41,7 @@ func TestLogInn(t *testing.T) {
 	user.Email = "admin@gmail.com"
 	user.Password = "admin12345678"
 	user, _ = module.LogIn(conn, collectionnameUser, user)
-	tokenstring, err := module.Encode(user.ID, user.Email, "4280fd42157198546b8bff929bddeaaf2cc6c3cedea412fa307904814fd45d2fbf735cfe7d545c9e53360f4271673dd7ad15d0fd56039298908360591b86d6b5")
+	tokenstring, err := module.Encode(user.ID, user.Email, "1916f4c19fee13fba2af95de0c4ed0191fdf686c77cf297294e375d7c1fb980ad1974bf59bcbf48b6c9aa9c1f24c7e2de5516c92f9432d6c1841e843e43cea21")
 	if err != nil {
 		fmt.Println(err)
 	} else {
@@ -51,8 +51,8 @@ func TestLogInn(t *testing.T) {
 }
 
 func TestToken(*testing.T) {
-	token := "v4.public.eyJlbWFpbCI6IiIsImV4cCI6IjIwMjQtMDEtMTFUMjA6MTY6NTcrMDc6MDAiLCJpYXQiOiIyMDI0LTAxLTExVDE4OjE2OjU3KzA3OjAwIiwiaWQiOiIwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAiLCJuYmYiOiIyMDI0LTAxLTExVDE4OjE2OjU3KzA3OjAwIn3Mp6gy60hsgsHUlMnuz6m_nMOiES-fBdM2C0JC3NYqZsGF2MED_pBAllwPvHHTa1g2owAC44qHBXrqRwAg3gYD"
-	tokenstring, err := module.Decode("bf735cfe7d545c9e53360f4271673dd7ad15d0fd56039298908360591b86d6b5", token)
+	token := "v4.public.eyJlbWFpbCI6IiIsImV4cCI6IjIwMjQtMDEtMTRUMTY6Mjk6MTQrMDc6MDAiLCJpYXQiOiIyMDI0LTAxLTE0VDE0OjI5OjE0KzA3OjAwIiwiaWQiOiIwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAiLCJuYmYiOiIyMDI0LTAxLTE0VDE0OjI5OjE0KzA3OjAwIn35Mf9bZ8kvXG7cNyimZmTogJLEUxxgJoFyuVNYqAzH8cuoDknSaikXe0FXZaWyevnxAWloOhTZfrZj2rHwxj8E"
+	tokenstring, err := module.Decode("d1974bf59bcbf48b6c9aa9c1f24c7e2de5516c92f9432d6c1841e843e43cea21", token)
 	if err != nil {
 		fmt.Println(err)
 	} else {

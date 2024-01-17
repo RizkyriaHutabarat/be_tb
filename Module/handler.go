@@ -249,3 +249,35 @@ func DeleteCatatanHandler(PASETOPUBLICKEYENV, MONGOCONNSTRINGENV, dbname string,
 	response.Message = "Berhasil menghapus Katalog Spot"
 	return GCFReturnStruct(response)
 }
+
+
+
+func GetProfileHandler(PASETOPUBLICKEYENV, MONGOCONNSTRINGENV, dbname string, r *http.Request) string {
+	conn := MongoConnect(MONGOCONNSTRINGENV, dbname)
+	response.Status = 400
+	//
+	payload, err := GetUserLogin(PASETOPUBLICKEYENV, r)
+	if err != nil {
+		response.Message = err.Error()
+		return GCFReturnStruct(response)
+	}
+	user, err := GetUserFromID(payload.Id, conn)
+	if err != nil {
+		response.Message = err.Error()
+		return GCFReturnStruct(response)
+	}
+	//
+	response.Status = 200
+	response.Message = "Get Success"
+	responData := bson.M{
+		"status":  response.Status,
+		"message": response.Message,
+		"data": bson.M{
+			"_id":          user.ID,
+			"nama_lengkap": user.FullName,
+			"email":        user.Email,
+			"phonenumber":        user.PhoneNumber,
+		},
+	}
+	return GCFReturnStruct(responData)
+}
