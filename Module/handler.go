@@ -112,15 +112,15 @@ func TambahCatatanHandler(PASETOPUBLICKEYENV, MONGOCONNSTRINGENV, dbname string,
 	conn := MongoConnect(MONGOCONNSTRINGENV, dbname)
 	response.Status = 400
 	//
-	user, err := GetUserLogin(PASETOPUBLICKEYENV, r)
-	if err != nil {
-		response.Message = err.Error()
-		return GCFReturnStruct(response)
-	}
-	if user.Email != "kia@gmail.com" {
-		response.Message = "Anda tidak memiliki akses, email anda : " + user.Email
-		return GCFReturnStruct(response)
-	}
+	// user, err := GetUserLogin(PASETOPUBLICKEYENV, r)
+	// if err != nil {
+	// 	response.Message = err.Error()
+	// 	return GCFReturnStruct(response)
+	// }
+	// if user.Email != "kia@gmail.com" {
+	// 	response.Message = "Anda tidak memiliki akses, email anda : " + user.Email
+	// 	return GCFReturnStruct(response)
+	// }
 	data, err := InsertCatatan(conn, collectionname, r)
 	if err != nil {
 		response.Message = err.Error()
