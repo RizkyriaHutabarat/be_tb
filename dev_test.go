@@ -38,8 +38,8 @@ func TestSignUp(t *testing.T) {
 func TestLogInn(t *testing.T) {
 	conn := db
 	var user model.User
-	user.Email = "kia@gmail.com"
-	user.Password = "kia181103"
+	user.Email = "lina@gmail.com"
+	user.Password = "lina1234"
 	user, _ = module.LogIn(conn, collectionnameUser, user)
 	tokenstring, err := module.Encode(user.ID, user.Email, "33186fcfc13ba9946bf200cf6c7808e6ebfc605140f65809e06648985b08ebda2df976efd75eacf2a37b1ce184deec8d3b72cb78f7881ed5e7a02d97351c2aef")
 	if err != nil {
@@ -78,10 +78,10 @@ func TestInsertCatatan(t *testing.T) {
 	id, err := module.InsertOneDoc(db, "catatan", model.Catatan{
 		ID:       primitive.NewObjectID(),
 		Title : "Pemrograman IV",
-		Note : "Membuat Tugas Besar Flutter",
-		Date : "11/1/2024",
-		StartTime : "09:55 PM",
-		EndTime : "10:20 PM",
+		Note : "Membuat  Flutter",
+		Date : "18/1/2024",
+		StartTime : "19:55 PM",
+		EndTime : "20:20 PM",
 		Remind : "0 minutes early",
 		Repeat : "none",
 	})

@@ -117,7 +117,7 @@ func TambahCatatanHandler(PASETOPUBLICKEYENV, MONGOCONNSTRINGENV, dbname string,
 		response.Message = err.Error()
 		return GCFReturnStruct(response)
 	}
-	if user.Email != "admin@gmail.com" {
+	if user.Email != "kia@gmail.com" {
 		response.Message = "Anda tidak memiliki akses, email anda : " + user.Email
 		return GCFReturnStruct(response)
 	}
@@ -186,7 +186,7 @@ func EditUpdateHandler(PASETOPUBLICKEYENV, MONGOCONNSTRINGENV, dbname string, co
 		response.Message = err.Error()
 		return GCFReturnStruct(response)
 	}
-	if user.Email != "admin@gmail.com" {
+	if user.Email != "kia@gmail.com" {
 		response.Message = "Anda tidak memiliki akses"
 		return GCFReturnStruct(response)
 	}
@@ -225,7 +225,7 @@ func DeleteCatatanHandler(PASETOPUBLICKEYENV, MONGOCONNSTRINGENV, dbname string,
 		response.Message = err.Error()
 		return GCFReturnStruct(response)
 	}
-	if user.Email != "admin@gmail.com" {
+	if user.Email != "kia@gmail.com" {
 		response.Message = "Anda tidak memiliki akses"
 		return GCFReturnStruct(response)
 	}
@@ -246,7 +246,7 @@ func DeleteCatatanHandler(PASETOPUBLICKEYENV, MONGOCONNSTRINGENV, dbname string,
 	}
 	//
 	response.Status = 204
-	response.Message = "Berhasil menghapus Katalog Spot"
+	response.Message = "Berhasil menghapus catatan"
 	return GCFReturnStruct(response)
 }
 
