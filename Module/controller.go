@@ -167,32 +167,35 @@ func GetCatatanById(db *mongo.Database, col string, idparam primitive.ObjectID) 
 // }
 
 func InsertCatatan(db *mongo.Database, col string, r *http.Request) (bson.M, error) {
-	title := r.FormValue("title")
-	note := r.FormValue("note")
-	date := r.FormValue("date")
-	starttime := r.FormValue("starttime")
-	endtime := r.FormValue("endtime")
-	remind := r.FormValue("remind")
-	repeat := r.FormValue("repeat")
-
-	if title == "" || note == "" || date == "" || starttime == "" || endtime == ""|| remind == "" || repeat == ""  {
-		return bson.M{}, fmt.Errorf("mohon untuk melengkapi data")
-	}
+	var doc model.Catatan
 	
-	catatan := bson.M{
-		"_id":      primitive.NewObjectID(),
-		"title":    	   title,
-		"note":     note,
-		"date": 			   date,
-		"starttime":   	   starttime,
-		"endtime":       endtime,
-		"remind":              remind,
-		"repeat":              repeat,
-	}
-	_, err := InsertOneDoc(db, col, catatan)
+	decoder := json.NewDecoder(r.Body)
+	err := decoder.Decode(&doc)
 	if err != nil {
 		return bson.M{}, err
 	}
+
+	// Validate the required fields
+	if doc.Title == "" || doc.Note == "" || doc.Date == "" || doc.StartTime == "" || doc.EndTime == "" || doc.Remind == "" || doc.Repeat == "" {
+		return bson.M{}, fmt.Errorf("mohon untuk melengkapi data")
+	}
+
+	catatan := bson.M{
+		"_id":       primitive.NewObjectID(),
+		"title":     doc.Title,
+		"note":      doc.Note,
+		"date":      doc.Date,
+		"starttime": doc.StartTime,
+		"endtime":   doc.EndTime,
+		"remind":    doc.Remind,
+		"repeat":    doc.Repeat,
+	}
+
+	_, err = InsertOneDoc(db, col, catatan)
+	if err != nil {
+		return bson.M{}, err
+	}
+
 	return catatan, nil
 }
 
