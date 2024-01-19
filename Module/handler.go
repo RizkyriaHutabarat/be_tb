@@ -181,15 +181,15 @@ func EditUpdateHandler(PASETOPUBLICKEYENV, MONGOCONNSTRINGENV, dbname string, co
 	conn := MongoConnect(MONGOCONNSTRINGENV, dbname)
 	response.Status = 400
 	//
-	user, err := GetUserLogin(PASETOPUBLICKEYENV, r)
-	if err != nil {
-		response.Message = err.Error()
-		return GCFReturnStruct(response)
-	}
-	if user.Email != "kia@gmail.com" {
-		response.Message = "Anda tidak memiliki akses"
-		return GCFReturnStruct(response)
-	}
+	// user, err := GetUserLogin(PASETOPUBLICKEYENV, r)
+	// if err != nil {
+	// 	response.Message = err.Error()
+	// 	return GCFReturnStruct(response)
+	// }
+	// if user.Email != "kia@gmail.com" {
+	// 	response.Message = "Anda tidak memiliki akses"
+	// 	return GCFReturnStruct(response)
+	// }
 	id := GetID(r)
 	if id == "" {
 		response.Message = "Wrong parameter"
@@ -220,15 +220,15 @@ func DeleteCatatanHandler(PASETOPUBLICKEYENV, MONGOCONNSTRINGENV, dbname string,
 	conn := MongoConnect(MONGOCONNSTRINGENV, dbname)
 	response.Status = 400
 	//
-	user, err := GetUserLogin(PASETOPUBLICKEYENV, r)
-	if err != nil {
-		response.Message = err.Error()
-		return GCFReturnStruct(response)
-	}
-	if user.Email != "kia@gmail.com" {
-		response.Message = "Anda tidak memiliki akses"
-		return GCFReturnStruct(response)
-	}
+	// user, err := GetUserLogin(PASETOPUBLICKEYENV, r)
+	// if err != nil {
+	// 	response.Message = err.Error()
+	// 	return GCFReturnStruct(response)
+	// }
+	// if user.Email != "kia@gmail.com" {
+	// 	response.Message = "Anda tidak memiliki akses"
+	// 	return GCFReturnStruct(response)
+	// }
 	id := GetID(r)
 	if id == "" {
 		response.Message = "Wrong parameter"
