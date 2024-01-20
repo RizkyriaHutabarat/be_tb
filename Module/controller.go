@@ -245,35 +245,69 @@ func DeleteCatatan(_id primitive.ObjectID, col string, db *mongo.Database) error
 // 	return nil
 // }
 
-func UpdateCatatan(_id primitive.ObjectID, db *mongo.Database, col string, r *http.Request) (bson.M, error) {
-	judul_tugas := r.FormValue("judul_tugas")
-	deskripsi_tugas := r.FormValue("deskripsi_tugas")
-	date := r.FormValue("date")
-	starttime := r.FormValue("starttime")
-	endtime := r.FormValue("endtime")
-	remind := r.FormValue("remind")
-	repeat := r.FormValue("repeat")
+// func UpdateCatatan(_id primitive.ObjectID, db *mongo.Database, col string, r *http.Request) (bson.M, error) {
+// 	judul_tugas := r.FormValue("judul_tugas")
+// 	deskripsi_tugas := r.FormValue("deskripsi_tugas")
+// 	date := r.FormValue("date")
+// 	starttime := r.FormValue("starttime")
+// 	endtime := r.FormValue("endtime")
+// 	remind := r.FormValue("remind")
+// 	repeat := r.FormValue("repeat")
 
-	if judul_tugas == "" || deskripsi_tugas == "" || date == "" || starttime == "" || endtime == ""|| remind == "" || repeat == ""  {
+// 	if judul_tugas == "" || deskripsi_tugas == "" || date == "" || starttime == "" || endtime == ""|| remind == "" || repeat == ""  {
+// 		return bson.M{}, fmt.Errorf("mohon untuk melengkapi data")
+// 	}
+
+// 	catatan := bson.M{
+// 		"_id":      primitive.NewObjectID(),
+// 		"judul_tugas":    	   judul_tugas,
+// 		"deskripsi_tugas":     deskripsi_tugas,
+// 		"date": 			   date,
+// 		"starttime":   	   starttime,
+// 		"endtime":       endtime,
+// 		"remind":              remind,
+// 		"repeat":              repeat,
+// 	}
+// 	err := UpdateOneDoc(_id, db, col, catatan)
+// 	if err != nil {
+// 		return bson.M{}, err
+// 	}
+// 	return catatan, nil
+// }
+
+func UpdateCatatan(_id primitive.ObjectID, db *mongo.Database, col string, r *http.Request) (bson.M, error) {
+	var doc model.Catatan
+
+	decoder := json.NewDecoder(r.Body)
+	err := decoder.Decode(&doc)
+	if err != nil {
+		return bson.M{}, err
+	}
+
+	// Validate the required fields
+	if doc.Title == "" || doc.Note == "" || doc.Date == "" || doc.StartTime == "" || doc.EndTime == "" || doc.Remind == "" || doc.Repeat == "" {
 		return bson.M{}, fmt.Errorf("mohon untuk melengkapi data")
 	}
 
 	catatan := bson.M{
-		"_id":      primitive.NewObjectID(),
-		"judul_tugas":    	   judul_tugas,
-		"deskripsi_tugas":     deskripsi_tugas,
-		"date": 			   date,
-		"starttime":   	   starttime,
-		"endtime":       endtime,
-		"remind":              remind,
-		"repeat":              repeat,
+		"_id":             primitive.NewObjectID(),
+		"title":   				 doc.Title,
+		"note":						 doc.Note,
+		"date":            doc.Date,
+		"starttime":       doc.StartTime,
+		"endtime":         doc.EndTime,
+		"remind":          doc.Remind,
+		"repeat":          doc.Repeat,
 	}
-	err := UpdateOneDoc(_id, db, col, catatan)
+
+	err = UpdateOneDoc(_id, db, col, catatan)
 	if err != nil {
 		return bson.M{}, err
 	}
+
 	return catatan, nil
 }
+
 
 // get user login
 func GetUserLogin(PASETOPUBLICKEYENV string, r *http.Request) (model.Payload, error) {
